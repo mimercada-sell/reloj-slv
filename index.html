@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reloj de Lujo Dragón 3D - Lumina Store El Salvador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS RESET & VARIABLES */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --primary-gold: #D4AF37;
+      --gold-gradient: linear-gradient(135deg, #FFE082 0%, #D4AF37 50%, #B8860B 100%);
+      --gold-btn: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      --dark-bg: #0d0d0d;
+      --card-bg: #1A1A1A;
+      --light-text: #FFFFFF;
+      --sub-text: #CCCCCC;
+      --accent-red: #E53935;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Poppins', sans-serif;
+    }
+    
+    body {
+      font-family: var(--font-body);
+      background-color: var(--dark-bg);
+      color: var(--light-text);
+      line-height: 1.4;
+      padding-bottom: 70px; /* Space for sticky bar */
+      overflow-x: hidden;
+    }
+
+    /* TOP ANNOUNCEMENT BAR (ANIMATED TICKER) */
+    .ticker-wrap {
+      width: 100%;
+      background: var(--gold-gradient);
+      color: #000;
+      font-weight: 700;
+      font-size: 13px;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 6px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .ticker {
+      display: inline-block;
+      animation: ticker 18s linear infinite;
+    }
+    .ticker-item {
+      display: inline-block;
+      padding: 0 20px;
+    }
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* HEADER & LOGO */
+    header {
+      background-color: #050505;
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+    header img {
+      max-height: 55px;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 12px;
+    }
+
+    /* BADGE */
+    .badge {
+      display: inline-block;
+      background-color: var(--accent-red);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+      100% { transform: scale(1); }
+    }
+
+    /* PRODUCT HERO SECTION */
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #FFD700;
+      margin-bottom: 10px;
+    }
+    .rating-row span {
+      color: var(--sub-text);
+    }
+
+    /* IMAGE GALLERY / MAIN IMAGE */
+    .main-image-container {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #333;
+      background: #111;
+      margin-bottom: 12px;
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+    }
+    .main-image-container img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* PRICE BOX */
+    .price-card {
+      background: linear-gradient(180deg, #1f1f1f 0%, #121212 100%);
+      border: 1px solid var(--primary-gold);
+      border-radius: 10px;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .price-left .old-price {
+      text-decoration: line-through;
+      color: #888;
+      font-size: 14px;
+    }
+    .price-left .current-price {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 900;
+      color: #FFD700;
+      line-height: 1;
+    }
+    .price-right {
+      text-align: right;
+    }
+    .tag-cod {
+      background: rgba(212, 175, 55, 0.2);
+      color: #FFD700;
+      border: 1px solid var(--primary-gold);
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    /* TRUST HIGHLIGHTS */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .trust-item {
+      background: var(--card-bg);
+      padding: 8px 5px;
+      border-radius: 8px;
+      border: 1px solid #2a2a2a;
+    }
+    .trust-item .icon {
+      font-size: 18px;
+      margin-bottom: 2px;
+      display: block;
+    }
+    .trust-item p {
+      font-size: 10px;
+      font-weight: 600;
+      color: #DDD;
+      line-height: 1.2;
+    }
+
+    /* FORM SECTION */
+    .form-wrapper {
+      background: #141414;
+      border: 2px solid var(--primary-gold);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+      position: relative;
+    }
+    .form-wrapper::before {
+      content: "¡PEDIDO RÁPIDO!";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-gold);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 2px 14px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+    .form-title {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      margin-top: 5px;
+      margin-bottom: 4px;
+      color: #FFF;
+    }
+    .form-subtitle {
+      text-align: center;
+      font-size: 12px;
+      color: var(--primary-gold);
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #CCC;
+    }
+    .form-control {
+      width: 100%;
+      padding: 11px 12px;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #FFF;
+      font-size: 13px;
+      font-family: var(--font-body);
+      transition: border 0.3s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-gold);
+      background: #282828;
+    }
+    
+    /* FORM SUBMIT BUTTON */
+    .btn-submit {
+      width: 100%;
+      background: var(--gold-btn);
+      color: #000;
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 900;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.2s;
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 800;
+      text-align: center;
+      margin: 25px 0 12px;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--primary-gold);
+      margin: 6px auto 0;
+      border-radius: 2px;
+    }
+
+    /* MEDIA CONTAINER (VIDEO & EXTRA IMAGES) */
+    .media-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      border: 1px solid #282828;
+    }
+    .media-card img, .media-card video {
+      width: 100%;
+      display: block;
+    }
+    .video-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      border: 1px dashed #444;
+    }
+
+    /* REVIEWS / TRUST SECTION */
+    .guarantee-box {
+      background: linear-gradient(135deg, #1c180a 0%, #111 100%);
+      border: 1px dashed var(--primary-gold);
+      padding: 14px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px 0;
+    }
+    .guarantee-box h4 {
+      color: var(--primary-gold);
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .guarantee-box p {
+      font-size: 11px;
+      color: #AAA;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-size: 10px;
+      color: #666;
+      padding: 20px 10px 40px;
+      border-top: 1px solid #1a1a1a;
+    }
+
+    /* STICKY BOTTOM BAR */
+    .sticky-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 8px 12px;
+      border-top: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 999;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
+    }
+    .sticky-price {
+      display: flex;
+      flex-direction: column;
+    }
+    .sticky-price .label {
+      font-size: 9px;
+      color: #AAA;
+    }
+    .sticky-price .val {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFD700;
+      line-height: 1;
+    }
+    .sticky-btn {
+      background: var(--gold-btn);
+      color: #000;
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-transform: uppercase;
+      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <div class="ticker-item">🚚 ENVÍO GRATIS A TODO EL SALVADOR</div>
+      <div class="ticker-item">🤝 PAGO CONTRA ENTREGA (PAGAS AL RECIBIR)</div>
+      <div class="ticker-item">⭐ GARANTÍA DE SATISFACCIÓN</div>
+      <div class="ticker-item">🚚 ENVÍO GRATIS A TODO EL SALVADOR</div>
+      <div class="ticker-item">🤝 PAGO CONTRA ENTREGA (PAGAS AL RECIBIR)</div>
+      <div class="ticker-item">⭐ GARANTÍA DE SATISFACCIÓN</div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header>
+    <img src="lumina.jpeg" alt="Lumina Store Logo">
+  </header>
+
+  <div class="container">
+    
+    <!-- PRODUCT HERO -->
+    <div style="margin-top: 10px;">
+      <span class="badge">🔥 Más vendido en El Salvador</span>
+      <h1 class="product-title">Reloj de Lujo Dragón 3D Dorado - Edición Exclusiva</h1>
+    
+    </div>
+
+    <!-- MAIN PRODUCT IMAGE -->
+    <div class="main-image-container">
+      <img src="hh.jpg" alt="Reloj Dorado Dragón">
+    </div>
+
+    <!-- PRICE BOX -->
+    <div class="price-card">
+      <div class="price-left">
+        <div class="old-price">Antes: $70</div>
+        <div class="current-price">$38</div>
+      </div>
+      <div class="price-right">
+        <span class="tag-cod">🚚 Envío Gratis + COD</span>
+        <div style="font-size: 10px; color: #888; margin-top: 3px;">Oferta por tiempo limitado</div>
+      </div>
+    </div>
+
+    <!-- TRUST HIGHLIGHTS -->
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="icon">💵</span>
+        <p>Pago Contra Entrega</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🇸🇻</span>
+        <p>Envío Rápido El Salvador</p>
+      </div>
+      <div class="trust-item">
+        <span class="icon">🛡️</span>
+        <p>Garantía de Satisfacción</p>
+      </div>
+    </div>
+
+    <!-- ORDER FORM SECTION -->
+    <div class="form-wrapper" id="order-form">
+      <div class="form-title">COMPRA AHORA Y PAGA EN CASA</div>
+      <div class="form-subtitle">Llene sus datos para coordinar la entrega</div>
+      
+      <form id="codForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="nombreApellido">Nombre y Apellido *</label>
+          <input type="text" id="nombreApellido" name="nombreApellido" class="form-control" placeholder="Ej. Carlos Mendoza" required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono *</label>
+          <input type="tel" id="telefono" name="telefono" class="form-control" placeholder="Ej. 7777 1234" required>
+        </div>
+
+        <div class="form-group">
+          <label for="provincia">Provincia / Departamento *</label>
+          <input type="text" id="provincia" name="provincia" class="form-control" placeholder="Ej. San Salvador, La Libertad..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="ciudadMunicipio">Ciudad / Municipio *</label>
+          <input type="text" id="ciudadMunicipio" name="ciudadMunicipio" class="form-control" placeholder="Ej. Santa Tecla, Soyapango..." required>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Dirección Completa *</label>
+          <input type="text" id="direccion" name="direccion" class="form-control" placeholder="Ej. Calle Los Sisimiles #123, Col. Miramonte" required>
+        </div>
+
+        <button type="submit" id="btnSubmit" class="btn-submit">
+          🛒 CONFIRMAR PEDIDO ($38)
+        </button>
+      </form>
+    </div>
+
+    <!-- SECTION: DETALLES EN IMÁGENES -->
+    <div class="section-title">DETALLES DEL PRODUCTO</div>
+
+    <!-- IMAGE 1: NEW EL SALVADOR PROMO IMAGE -->
+    <div class="media-card">
+      <img src="Gemini_Generated_Image_gf10glgf10glgf10.png" alt="Reloj Elegante Dragón 3D - El Salvador $38">
+    </div>
+
+    <!-- VIDEO PLACEHOLDER SECTION -->
+    <div class="section-title">VER EN ACCIÓN</div>
+    <div class="media-card">
+      <div class="video-placeholder">
+        <p style="font-size: 24px; margin-bottom: 5px;">▶️</p>
+        <p style="font-size: 12px;">Aquí va el video demostrativo del reloj</p>
+        <video controls style="width:100%;">
+          <source src="vid1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- IMAGE 2: LIFESTYLE WRIST SHOT -->
+    <div class="media-card">
+      <img src="Gemini_Generated_Image_wcd4xawcd4xawcd4.png" alt="Reloj de Lujo en Muñeca">
+    </div>
+
+    <!-- IMAGE 3: RESISTENTE AL AGUA -->
+    <div class="media-card">
+      <img src="agua.png" alt="Resistente al Agua Salpicaduras">
+    </div>
+
+    <!-- GUARANTEE BOX -->
+    <div class="guarantee-box">
+      <h4>🔒 COMPRA 100% SEGURA EN EL SALVADOR</h4>
+      <p>Pagas únicamente cuando recibes el paquete en la puerta de tu casa u oficina. Sin riesgos ni pagos por adelantado.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Lumina Store El Salvador. Todos los derechos reservados.</p>
+    <p>Mejores elecciones, mejor vida.</p>
+  </footer>
+
+  <!-- STICKY BOTTOM BAR FOR MOBILE -->
+  <div class="sticky-bar">
+    <div class="sticky-price">
+      <span class="label">Precio Total:</span>
+      <span class="val">$38</span>
+    </div>
+    <a href="#order-form" class="sticky-btn">PEDIR AHORA 🛒</a>
+  </div>
+
+  <script>
+    // 📌 REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+    const GOOGLE_SHEET_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true;
+      btn.innerText = 'PROCESANDO PEDIDO...';
+
+      const formData = new FormData(event.target);
+      const data = {
+        fecha: new Date().toLocaleString("es-SV", {timeZone: "America/El_Salvador"}),
+        nombreApellido: formData.get('nombreApellido'),
+        telefono: formData.get('telefono'),
+        provincia: formData.get('provincia'),
+        ciudadMunicipio: formData.get('ciudadMunicipio'),
+        direccion: formData.get('direccion'),
+        precio: '$38',
+        pais: 'El Salvador'
+      };
+
+      if (GOOGLE_SHEET_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+        // Fallback demo simulation if Google Script URL is not set yet
+        setTimeout(() => {
+          alert('¡Gracias por tu pedido! Tu orden de $38 ha sido registrada con éxito. Nos pondremos en contacto contigo por teléfono/WhatsApp para coordinar la entrega.');
+          document.getElementById('codForm').reset();
+          btn.disabled = false;
+          btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+        }, 1000);
+        return;
+      }
+
+      fetch(GOOGLE_SHEET_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(() => {
+        alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo por teléfono/WhatsApp para coordinar la entrega.');
+        document.getElementById('codForm').reset();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert('Hubo un inconveniente al enviar tu pedido. Por favor intenta de nuevo.');
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+      });
+    }
+  </script>
+</body>
+</html>
