@@ -567,9 +567,8 @@
     <a href="#order-form" class="sticky-btn">PEDIR AHORA 🛒</a>
   </div>
 
-  <script>
-    // 📌 REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-    const GOOGLE_SHEET_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+ <script>
+    const GOOGLE_SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFSpJ4HE_putESRj2wEmpYDV0al-Fh8pZN8hlIT88fp_THpym-FP--ptcieDZPCmuEQw/exec';
 
     function handleFormSubmit(event) {
       event.preventDefault();
@@ -579,27 +578,29 @@
       btn.innerText = 'PROCESANDO PEDIDO...';
 
       const formData = new FormData(event.target);
+
+      const params = new URLSearchParams(window.location.search);
+
       const data = {
-        fecha: new Date().toLocaleString("es-SV", {timeZone: "America/El_Salvador"}),
-        nombreApellido: formData.get('nombreApellido'),
+        nombre: formData.get('nombreApellido'),
         telefono: formData.get('telefono'),
+
         provincia: formData.get('provincia'),
-        ciudadMunicipio: formData.get('ciudadMunicipio'),
+        ciudad: formData.get('ciudadMunicipio'),
+
         direccion: formData.get('direccion'),
-        precio: '$38',
-        pais: 'El Salvador'
+
+        pais: "El Salvador",
+        producto: "Reloj Dragon 3D",
+        precio: 38,
+
+        // Facebook tracking
+        source: params.get("utm_source") || "Facebook",
+        campaign: params.get("utm_campaign") || "Test1",
+        adset: params.get("utm_term") || "Broad",
+        ad: params.get("utm_content") || "Video1"
       };
 
-      if (GOOGLE_SHEET_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
-        // Fallback demo simulation if Google Script URL is not set yet
-        setTimeout(() => {
-          alert('¡Gracias por tu pedido! Tu orden de $38 ha sido registrada con éxito. Nos pondremos en contacto contigo por teléfono/WhatsApp para coordinar la entrega.');
-          document.getElementById('codForm').reset();
-          btn.disabled = false;
-          btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
-        }, 1000);
-        return;
-      }
 
       fetch(GOOGLE_SHEET_SCRIPT_URL, {
         method: 'POST',
@@ -610,7 +611,7 @@
         body: JSON.stringify(data)
       })
       .then(() => {
-        alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo por teléfono/WhatsApp para coordinar la entrega.');
+        alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo para coordinar la entrega.');
         document.getElementById('codForm').reset();
       })
       .catch((error) => {
@@ -622,6 +623,6 @@
         btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
       });
     }
-  </script>
+</script>
 </body>
 </html>
