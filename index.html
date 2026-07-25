@@ -7,6 +7,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', 'YOUR_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+
   <style>
     /* CSS RESET & VARIABLES */
     * {
@@ -567,62 +583,103 @@
     <a href="#order-form" class="sticky-btn">PEDIR AHORA 🛒</a>
   </div>
 
- <script>
-    const GOOGLE_SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFSpJ4HE_putESRj2wEmpYDV0al-Fh8pZN8hlIT88fp_THpym-FP--ptcieDZPCmuEQw/exec';
+<script>
+const GOOGLE_SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFSpJ4HE_putESRj2wEmpYDV0al-Fh8pZN8hlIT88fp_THpym-FP--ptcieDZPCmuEQw/exec';
 
-    function handleFormSubmit(event) {
-      event.preventDefault();
-      
-      const btn = document.getElementById('btnSubmit');
-      btn.disabled = true;
-      btn.innerText = 'PROCESANDO PEDIDO...';
+let isSubmitting = false;
 
-      const formData = new FormData(event.target);
+function handleFormSubmit(event) {
+  event.preventDefault();
 
-      const params = new URLSearchParams(window.location.search);
+  // Prevent multiple clicks
+  if (isSubmitting) {
+    return;
+  }
 
-      const data = {
-        nombre: formData.get('nombreApellido'),
-        telefono: formData.get('telefono'),
+  isSubmitting = true;
 
-        provincia: formData.get('provincia'),
-        ciudad: formData.get('ciudadMunicipio'),
+  const btn = document.getElementById('btnSubmit');
 
-        direccion: formData.get('direccion'),
-
-        pais: "El Salvador",
-        producto: "Reloj Dragon 3D",
-        precio: 38,
-
-        // Facebook tracking
-        source: params.get("utm_source") || "Facebook",
-        campaign: params.get("utm_campaign") || "Test1",
-        adset: params.get("utm_term") || "Broad",
-        ad: params.get("utm_content") || "Video1"
-      };
+  btn.disabled = true;
+  btn.style.pointerEvents = "none";
+  btn.innerText = 'PROCESANDO PEDIDO...';
 
 
-      fetch(GOOGLE_SHEET_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(() => {
-        alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo para coordinar la entrega.');
-        document.getElementById('codForm').reset();
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        alert('Hubo un inconveniente al enviar tu pedido. Por favor intenta de nuevo.');
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+  const formData = new FormData(event.target);
+
+  const params = new URLSearchParams(window.location.search);
+
+
+  const data = {
+    nombre: formData.get('nombreApellido'),
+    telefono: formData.get('telefono'),
+
+    provincia: formData.get('provincia'),
+    ciudad: formData.get('ciudadMunicipio'),
+
+    direccion: formData.get('direccion'),
+
+    pais: "El Salvador",
+    producto: "Reloj Dragon 3D",
+    precio: 38,
+
+    // Facebook tracking
+    source: params.get("utm_source") || "Facebook",
+    campaign: params.get("utm_campaign") || "Test1",
+    adset: params.get("utm_term") || "Broad",
+    ad: params.get("utm_content") || "Video1"
+  };
+
+
+  fetch(GOOGLE_SHEET_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+
+
+  .then(() => {
+
+    // ✅ Send Lead event to Meta Pixel
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', {
+        content_name: 'Reloj Dragon 3D',
+        value: 38,
+        currency: 'USD'
       });
     }
+
+
+    alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo para coordinar la entrega.');
+
+    document.getElementById('codForm').reset();
+
+
+    // Optional:
+    // window.location.href = "/gracias.html";
+
+  })
+
+
+  .catch((error) => {
+
+    console.error('Error:', error);
+
+    alert('Hubo un inconveniente al enviar tu pedido. Por favor intenta de nuevo.');
+
+    // Allow retry if failed
+    isSubmitting = false;
+
+    btn.disabled = false;
+    btn.style.pointerEvents = "auto";
+    btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+
+  });
+
+}
 </script>
 </body>
 </html>
