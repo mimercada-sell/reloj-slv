@@ -659,7 +659,11 @@ function handleFormSubmit(event) {
     alert('¡Gracias por tu pedido! Tu orden ha sido registrada con éxito. Nos pondremos en contacto contigo para coordinar la entrega.');
 
     document.getElementById('codForm').reset();
+    isSubmitting = false;
+
     btn.disabled = false;
+    btn.style.pointerEvents = "auto";
+    btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
 
 
     // Optional:
