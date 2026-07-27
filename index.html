@@ -644,9 +644,9 @@ function handleFormSubmit(event) {
 
   .then(() => {
 
-    // ✅ Send Lead event to Meta Pixel
+    // ✅ Send Purchase event to Meta Pixel
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', {
+      fbq('track', 'Purchase', {
         content_name: 'Reloj Dragon 3D',
         value: 38,
         currency: 'USD'
