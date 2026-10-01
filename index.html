@@ -432,6 +432,23 @@
       text-decoration: none;
       text-transform: uppercase;
       box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+      animation: sticky-cta-pulse 1.8s ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes sticky-cta-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(255, 215, 0, 0.6);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sticky-btn {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -472,7 +489,7 @@
     <div class="price-card">
       <div class="price-left">
         <div class="old-price">Antes: $70</div>
-        <div class="current-price">$38</div>
+        <div class="current-price">$42</div>
       </div>
       <div class="price-right">
         <span class="tag-cod">🚚 Envío Gratis + COD</span>
@@ -528,7 +545,7 @@
         </div>
 
         <button type="submit" id="btnSubmit" class="btn-submit">
-          🛒 CONFIRMAR PEDIDO ($38)
+          🛒 CONFIRMAR PEDIDO ($42)
         </button>
       </form>
     </div>
@@ -538,7 +555,7 @@
 
     <!-- IMAGE 1: NEW EL SALVADOR PROMO IMAGE -->
     <div class="media-card">
-      <img src="Gemini_Generated_Image_gf10glgf10glgf10.png" alt="Reloj Elegante Dragón 3D - El Salvador $38">
+      <img src="Gemini_Generated_Image_gf10glgf10glgf10.png" alt="Reloj Elegante Dragón 3D - El Salvador $42">
     </div>
 
     <!-- VIDEO PLACEHOLDER SECTION -->
@@ -581,7 +598,7 @@
   <div class="sticky-bar">
     <div class="sticky-price">
       <span class="label">Precio Total:</span>
-      <span class="val">$38</span>
+      <span class="val">$42</span>
     </div>
     <a href="#order-form" class="sticky-btn">PEDIR AHORA 🛒</a>
   </div>
@@ -624,7 +641,7 @@ function handleFormSubmit(event) {
 
     pais: "El Salvador",
     producto: "Reloj Dragon 3D",
-    precio: 38,
+    precio: 42,
 
     // Facebook tracking
     source: params.get("utm_source") || "Facebook",
@@ -648,7 +665,7 @@ function handleFormSubmit(event) {
     if (typeof fbq === 'function') {
       fbq('track', 'Purchase', {
         content_name: 'Reloj Dragon 3D',
-        value: 38,
+        value: 42,
         currency: 'USD'
       });
     }
@@ -661,7 +678,7 @@ function handleFormSubmit(event) {
 
     btn.disabled = false;
     btn.style.pointerEvents = "auto";
-    btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+    btn.innerText = '🛒 CONFIRMAR PEDIDO ($42)';
 
 
     // Optional:
@@ -681,7 +698,7 @@ function handleFormSubmit(event) {
 
     btn.disabled = false;
     btn.style.pointerEvents = "auto";
-    btn.innerText = '🛒 CONFIRMAR PEDIDO ($38)';
+    btn.innerText = '🛒 CONFIRMAR PEDIDO ($42)';
 
   });
 
