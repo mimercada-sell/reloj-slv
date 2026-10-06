@@ -629,25 +629,27 @@ function handleFormSubmit(event) {
 
   const params = new URLSearchParams(window.location.search);
 
+  const orderId = typeof crypto.randomUUID === 'function'
+    ? crypto.randomUUID()
+    : `ORD-${Date.now()}`;
 
   const data = {
-    nombre: formData.get('nombreApellido'),
-    telefono: formData.get('telefono'),
-
-    provincia: formData.get('provincia'),
-    ciudad: formData.get('ciudadMunicipio'),
-
-    direccion: formData.get('direccion'),
-
-    pais: "El Salvador",
-    producto: "Reloj Dragon 3D",
-    precio: 42,
-
-    // Facebook tracking
-    source: params.get("utm_source") || "Facebook",
-    campaign: params.get("utm_campaign") || "Test1",
-    adset: params.get("utm_adset") || "Broad",
-    ad: params.get("utm_ad") || "Video1"
+    'Order Id': orderId,
+    'Fecha': new Date().toLocaleString('es-SV', { timeZone: 'America/El_Salvador' }),
+    'Country': 'El Salvador',
+    'Fullname': formData.get('nombreApellido'),
+    'Phone Number': formData.get('telefono'),
+    'Departamento': formData.get('provincia'),
+    'Municipio': formData.get('ciudadMunicipio'),
+    'Direccion Completa': formData.get('direccion'),
+    'SKU': 'RELOJDRAGONSV',
+    'Quantity': 1,
+    'Price': 42,
+    'Estado': 'Pendiente',
+    'Fuente': params.get('utm_source') || 'Facebook',
+    'Campaña': params.get('utm_campaign') || 'Test1',
+    'Adset': params.get('utm_adset') || 'Broad',
+    'Anuncio': params.get('utm_ad') || 'Video1'
   };
 
 
