@@ -122,6 +122,22 @@
     }
 
     /* PRODUCT HERO SECTION */
+    .purchase-summary {
+      margin-bottom: 12px;
+    }
+    .purchase-summary p {
+      margin-top: 3px;
+      color: var(--sub-text);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .purchase-summary .current-price {
+      color: #FFD700;
+      font-family: var(--font-heading);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
     .product-title {
       font-family: var(--font-heading);
       font-size: 20px;
@@ -186,6 +202,14 @@
     .price-right {
       text-align: right;
     }
+    .animated-payment {
+      animation: payment-highlight 1.8s ease-in-out infinite;
+      transform-origin: center;
+    }
+    @keyframes payment-highlight {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.04); opacity: 0.82; }
+    }
     .tag-cod {
       background: rgba(212, 175, 55, 0.2);
       color: #FFD700;
@@ -234,7 +258,7 @@
       position: relative;
     }
     .form-wrapper::before {
-      content: "¡PEDIDO RÁPIDO!";
+      content: "Tu pedido";
       position: absolute;
       top: -12px;
       left: 50%;
@@ -344,7 +368,7 @@
       background: var(--card-bg);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 15px;
+      margin-bottom: 0px;
       border: 1px solid #282828;
     }
     .media-card img, .media-card video {
@@ -446,6 +470,7 @@
       }
     }
     @media (prefers-reduced-motion: reduce) {
+      .animated-payment,
       .sticky-btn {
         animation: none;
       }
@@ -459,10 +484,8 @@
     <div class="ticker">
       <div class="ticker-item">🚚 ENVÍO GRATIS A TODO EL SALVADOR</div>
       <div class="ticker-item">🤝 PAGO CONTRA ENTREGA (PAGAS AL RECIBIR)</div>
-      <div class="ticker-item">⭐ GARANTÍA DE SATISFACCIÓN</div>
       <div class="ticker-item">🚚 ENVÍO GRATIS A TODO EL SALVADOR</div>
       <div class="ticker-item">🤝 PAGO CONTRA ENTREGA (PAGAS AL RECIBIR)</div>
-      <div class="ticker-item">⭐ GARANTÍA DE SATISFACCIÓN</div>
     </div>
   </div>
 
@@ -475,42 +498,20 @@
     
     <!-- PRODUCT HERO -->
     <div style="margin-top: 10px;">
-      <span class="badge">🔥 Más vendido en El Salvador</span>
-      <h1 class="product-title">Reloj de Lujo Dragón 3D Dorado - Edición Exclusiva</h1>
-    
+      <h1 class="product-title">Reloj de Lujo Dragón 3D Dorado</h1>
+      <div class="price-card">
+        <div class="price-left">
+          <div class="current-price">$42 en total</div>
+        </div>
+        <div class="price-right animated-payment">
+          <span class="tag-cod" style="text-align:left">🚚 Envío gratis en El Salvador<br>🤝 Paga al recibir.</span>
+        </div>
+      </div>
     </div>
 
     <!-- MAIN PRODUCT IMAGE -->
     <div class="main-image-container">
       <img src="hh.jpg" alt="Reloj Dorado Dragón">
-    </div>
-
-    <!-- PRICE BOX -->
-    <div class="price-card">
-      <div class="price-left">
-        <div class="old-price">Antes: $70</div>
-        <div class="current-price">$42</div>
-      </div>
-      <div class="price-right">
-        <span class="tag-cod">🚚 Envío Gratis + COD</span>
-        <div style="font-size: 10px; color: #888; margin-top: 3px;">Oferta por tiempo limitado</div>
-      </div>
-    </div>
-
-    <!-- TRUST HIGHLIGHTS -->
-    <div class="trust-grid">
-      <div class="trust-item">
-        <span class="icon">💵</span>
-        <p>Pago Contra Entrega</p>
-      </div>
-      <div class="trust-item">
-        <span class="icon">🇸🇻</span>
-        <p>Envío Rápido El Salvador</p>
-      </div>
-      <div class="trust-item">
-        <span class="icon">🛡️</span>
-        <p>Garantía de Satisfacción</p>
-      </div>
     </div>
 
     <!-- ORDER FORM SECTION -->
@@ -530,12 +531,12 @@
         </div>
 
         <div class="form-group">
-          <label for="provincia">Provincia / Departamento *</label>
+          <label for="provincia">Departamento *</label>
           <input type="text" id="provincia" name="provincia" class="form-control" placeholder="Ej. San Salvador, La Libertad..." required>
         </div>
 
         <div class="form-group">
-          <label for="ciudadMunicipio">Ciudad / Municipio *</label>
+          <label for="ciudadMunicipio">Municipio *</label>
           <input type="text" id="ciudadMunicipio" name="ciudadMunicipio" class="form-control" placeholder="Ej. Santa Tecla, Soyapango..." required>
         </div>
 
@@ -553,38 +554,33 @@
     <!-- SECTION: DETALLES EN IMÁGENES -->
     <div class="section-title">DETALLES DEL PRODUCTO</div>
 
-    <!-- IMAGE 1: NEW EL SALVADOR PROMO IMAGE -->
-    <div class="media-card">
-      <img src="Gemini_Generated_Image_gf10glgf10glgf10.png" alt="Reloj Elegante Dragón 3D - El Salvador $42">
-    </div>
-
-    <!-- VIDEO PLACEHOLDER SECTION -->
-    <div class="section-title">VER EN ACCIÓN</div>
-    <div class="media-card">
-      <div class="video-placeholder">
-        <p style="font-size: 24px; margin-bottom: 5px;">▶️</p>
-        <p style="font-size: 12px;">Aquí va el video demostrativo del reloj</p>
-        <video controls style="width:100%;">
-          <source src="vid1.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-
     <!-- IMAGE 2: LIFESTYLE WRIST SHOT -->
     <div class="media-card">
       <img src="Gemini_Generated_Image_wcd4xawcd4xawcd4.png" alt="Reloj de Lujo en Muñeca">
     </div>
 
-    <!-- IMAGE 3: RESISTENTE AL AGUA -->
+     <!-- IMAGE 3: RESISTENTE AL AGUA -->
     <div class="media-card">
       <img src="agua.png" alt="Resistente al Agua Salpicaduras">
     </div>
-
-    <!-- GUARANTEE BOX -->
-    <div class="guarantee-box">
-      <h4>🔒 COMPRA 100% SEGURA EN EL SALVADOR</h4>
-      <p>Pagas únicamente cuando recibes el paquete en la puerta de tu casa u oficina. Sin riesgos ni pagos por adelantado.</p>
+    <!-- IMAGE 1: NEW EL SALVADOR PROMO IMAGE -->
+    <div class="media-card">
+      <img src="Gemini_Generated_Image_gf10glgf10glgf10.png" alt="Reloj Elegante Dragón 3D - El Salvador $42">
     </div>
+
+   
+
+    <!-- VIDEO PLACEHOLDER SECTION -->
+    <div class="section-title">VER EN ACCIÓN</div>
+    <div class="media-card">
+      <video controls style="width:100%;">
+        <source src="vid1.mp4" type="video/mp4">
+      </video>
+    </div>
+
+
+
+    
 
   </div>
 
